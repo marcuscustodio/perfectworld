@@ -75,19 +75,19 @@ Template Name: gallery
                         $my_args_serv_text = new WP_Query ($my_args_serv_text);
                     ?>
 
-                <?php if($my_args_serv_text->have_posts()) : while($my_args_serv_text->have_posts() ) : $my_args_serv_text->the_post();?>
-                    <div class="cards-posts">
-                      <a href="<?php the_permalink();?>">
-                            <?php the_post_thumbnail('thumb-galerias', ['class' => 'img-event-info ']); ?>
-                            <h3><?php the_title();?></h3>
-                        </a>
-                    </div>
+                <!-- <?php if($my_args_serv_text->have_posts()) : while($my_args_serv_text->have_posts() ) : $my_args_serv_text->the_post();?>
+             
             
                 <?php endwhile; endif; ?>
-                <?php wp_reset_query(); ?>
+                <?php wp_reset_query(); ?> -->
+                <?php echo do_shortcode('[ajax_load_more post_type="videos" destroy_after="2" posts_per_page="4" post_format="standard"  scroll_container="carregar" button_label="Carregar mais"]'); ?>
                     </div>
+                    
                </div>
+
+               
             </div>
+
             <div class="tab-pane fade" id="voos" role="tabpanel" aria-labelledby="voos-tab">
                 <div class="container">
                     <div class="content-posts">

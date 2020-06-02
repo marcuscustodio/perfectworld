@@ -8,8 +8,32 @@
             <img src="<?php bloginfo('template_url');?>/img/logo.png" alt="" class="logo-mid">
             <h2>Aventure-se nesta versão aprimorada de um clássico MMOPRG</h2>
            <div class="cta">
-            <a href="#" class="yellow-bnt">Download</a>
-            <a href="#" class="blue-btn">faça seu cadastro</a>
+
+           <?php
+                $my_args_serv_text = array(
+                    'post_type' => 'homeajustes',
+                    'posts_per_page' => 1,
+                );
+                $my_args_serv_text = new WP_Query ($my_args_serv_text);
+            ?>
+
+            <?php if($my_args_serv_text->have_posts()) : while($my_args_serv_text->have_posts() ) : $my_args_serv_text->the_post();?>
+
+            <?php 
+                $linkdownload = get_field('download');
+                if( $linkdownload ): ?>
+                <a href="<?php echo esc_url( $linkdownload ); ?>" class="yellow-bnt">Download</a>
+            <?php endif; ?>
+            
+            <?php 
+                $linkcadastro = get_field('cadastro');
+                if( $linkcadastro ): ?>
+
+            <a href="<?php echo esc_url( $linkcadastro ); ?>" class="blue-btn">faça seu cadastro</a>
+            <?php endif; ?>
+            <?php endwhile; endif; ?>
+            <?php wp_reset_query(); ?>
+
            </div>
         </div>
     </div>
@@ -17,11 +41,28 @@
 
     <div class="container">
         <div class="image-midle">
-            <h2>Viva a experiência desde grande Jogo. Convoque seus amigos e conquiste pan gu</h2>
+            <?php
+                $my_args_serv_text = array(
+                    'post_type' => 'homeajustes',
+                    'posts_per_page' => 1,
+                );
+                $my_args_serv_text = new WP_Query ($my_args_serv_text);
+            ?>
+
+            <?php if($my_args_serv_text->have_posts()) : while($my_args_serv_text->have_posts() ) : $my_args_serv_text->the_post();?>
+
+                <h2><?php echo the_field('titulo'); ?></h2>
+
+            
+            
 
             <div class="heroes-img">
-                <img src="<?php bloginfo('template_url');?>/img/characters_home.png" alt="">
+                <?php if( get_field('imagem_do_meio') ): ?>
+                        <img src='<?php the_field('imagem_do_meio'); ?>' />
+                    <?php endif; ?>
             </div>
+            <?php endwhile; endif; ?>
+            <?php wp_reset_query(); ?>
 
         </div>
     </div>
@@ -82,7 +123,7 @@
                    
                     <div class="card-event">
                         <a href="<?php the_permalink();?>">
-                            <?php the_post_thumbnail('thumb-posts', ['class' => 'img-event-info ']); ?>
+                        <?php the_post_thumbnail('thumb-posts', ['class' => 'img-event-info ']); ?>
                             <p class="text"><?php the_title();?></p>
                         </a>
                     </div> 

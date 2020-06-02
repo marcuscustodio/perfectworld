@@ -76,7 +76,20 @@ add_filter( 'body_class', 'pine_add_page_slug_body_class' );
 
 
 
-
+register_post_type('homeajustes',
+array(
+    'labels' => array(
+        'name' => __('Home Ajustes'),
+        'singular_name' => __('home ajustes')
+    ),
+    'supports' => array(
+        'title', 
+    ),
+    'public' => true,
+    'has_archive' => false,
+    'menu_icon' => 'dashicons-image-filter',
+    'rewrite' => array('slug' => 'homeajustes'),
+));
 
 //Montarias post type
 
@@ -139,6 +152,7 @@ function ms_setup() {
     add_image_size( 'destaque', 730,410, true );
     }
     add_action( 'after_setup_theme', 'ms_setup' );
+
 
 
 ?>

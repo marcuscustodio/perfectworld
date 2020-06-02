@@ -52,4 +52,7 @@
     $('#pesquisar').click(function(){
     $("#s").addClass(".abrir-busca");
     });
+
+
+    
 </script>
